@@ -8,7 +8,12 @@ import { cookies } from 'next/headers';
 
 import './globals.css';
 
-const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto', preload: true });
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-roboto',
+  preload: true
+});
 const baiJamjuree = BaiJamjuree({
   subsets: ['latin'],
   weight: '700',
@@ -22,7 +27,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const isAuthenticad = cookies().has('token');
+  const isAuthenticated = cookies().has('token');
 
   return (
     <html lang="en">
@@ -34,13 +39,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="h-[288px] w-[526px] bg-purple-700 rounded-full absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 opacity-50 blur-full" />
             <div className="w-2 bg-stripes absolute right-2 top-0 bottom-0" />
 
-            {isAuthenticad ? <Profile /> : <SignIn />}
+            {isAuthenticated ? <Profile /> : <SignIn />}
 
             <Hero />
             <Copyright />
           </div>
 
-          <div className="p-16 bg-[url(../assets/bg-stars.svg)] bg-cover flex flex-col">
+          <div className="bg-[url(../assets/bg-stars.svg)] bg-cover max-h-screen flex flex-col overflow-y-scroll">
             {children}
           </div>
         </main>
