@@ -27,7 +27,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const isAuthenticated = cookies().has('token');
+  const isAuthenticated = Boolean(cookies().get('token'));
 
   return (
     <html lang="en">
